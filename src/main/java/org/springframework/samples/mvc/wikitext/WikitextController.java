@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URLDecoder;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -57,7 +58,7 @@ public class WikitextController {
 		Project project = new Project();
 		project.setUserProperty("ant.file", buildFile.getAbsolutePath());
 		project.setProperty("document.name", name);
-		project.setProperty("bookTitle", title);
+		project.setProperty("bookTitle", URLDecoder.decode(title, "UTF-8"));
 		project.init();
 		ProjectHelper helper = ProjectHelper.getProjectHelper();
 		project.addReference("ant.projectHelper", helper);
